@@ -1,4 +1,6 @@
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.Locale;
+import java.util.Scanner;
 
 class Main {
 	
@@ -132,7 +134,14 @@ class Main {
 		
 	}
 	
+	
+	static String formata(double valor){
+		DecimalFormat dc = new DecimalFormat("0.000");
+		return dc.format(valor);
+	}
+	
 	// arredonda os números encontrados para três casas depois da vírgula
+	/*
 	static String formata(double valor){
 		Double d[] = new Double[1];
 		d[0] = new Double(valor);
@@ -141,6 +150,7 @@ class Main {
 			ret = ret.replace(",", ".");
 		return ret;
 	}
+	*/
 	
 
 }
