@@ -1,16 +1,29 @@
+import java.util.*;
 
 class Main {
 	
 	public static void main (String args[]){
 		
-		// simula a entrada
-		double Xc[] = {0.0,1.0};
-		double Yc[] = {0.0,0.0};
-		double R[] = {1.0,1.0};
-		decide(Xc,Yc,R);
+		double Xc[] = new double[2];
+		double Yc[] = new double[2];
+		double R[] = new double[2];
+		Scanner sc = new Scanner(System.in).useLocale(Locale.ENGLISH);
 		
 		// captura a entrada
+		while(sc.hasNext()){
+			
+			Xc[0] = sc.nextDouble();
+			Yc[0] = sc.nextDouble();
+			R[0] = sc.nextDouble();
+			
+			Xc[1] = sc.nextDouble();
+			Yc[1] = sc.nextDouble();
+			R[1] = sc.nextDouble();
+			
+			decide(Xc,Yc,R);
+		}
 		
+		sc.close();
 	}
 	
 	// decide qual resolucao deve ser aplicada
@@ -19,7 +32,7 @@ class Main {
 		// calcula a distancia euclidiana entre os dois pontos
 		double distancia = Math.sqrt((Xc[1] - Xc[0]) * (Xc[1] - Xc[0]) + (Yc[1] - Yc[0]) * (Yc[1] - Yc[0]));
 		
-		// se forem a mesma circunferência
+		// se forem a mesma circunferÃªncia
 		if(distancia == 0 && R[0] == R[1]){
 			System.out.println("THE CIRCLES ARE THE SAME");
 			return;
@@ -31,19 +44,19 @@ class Main {
 			return;
 		}
 		
-		// se as circunferências estao distantes demais uma da outra para se tocarem
+		// se as circunferÃªncias estao distantes demais uma da outra para se tocarem
 		if(distancia > (R[0]+R[1])){
 			Nintersec();
 			return;
 		}
 		
-		// se as circunferências se tocam em apenas um ponto
+		// se as circunferÃªncias se tocam em apenas um ponto
 		if(distancia == (R[0]+R[1])){
 			ONEintersec(Xc, Yc, R, distancia);
 			return;
 		}
 		
-		// se as circunferências se tocam em dois pontos
+		// se as circunferÃªncias se tocam em dois pontos
 		if(distancia < (R[0]+R[1])){
 			TWOintersec(Xc, Yc, R, distancia);
 			return;
@@ -64,7 +77,7 @@ class Main {
 		double Blinha = Math.abs(Xc[1]-Xc[0]);
 		double Alinha = Math.abs(Yc[1]-Yc[0]);
 		
-		// por semelhança de triangulos, temos que
+		// por semelhanÃ§a de triangulos, temos que
 		double A = (R[0]*Alinha)/(R[0]+R[1]);
 		double B = (R[0]*Blinha)/(R[0]+R[1]);
 		
@@ -92,13 +105,11 @@ class Main {
 	}
 	
 	// resolucao para duas interseccoes
-	// levando em conta o desenho e método proposto por Paul Bourke em artigo escrito em 1997 
-	// e comentado no relatório que acompanha este trabalho
-	// Vale observar que esse metodo esta sendo usado apenas para resolver o problema de duas intersecções.
-	// Já que as outras possibilidades foram cobertas em testes anteriores à chamada do método a seguir
+	// levando em conta o desenho e mÃ©todo proposto por Paul Bourke em artigo escrito em 1997 
+	// e comentado no relatÃ³rio que acompanha este trabalho
+	// Vale observar que esse metodo esta sendo usado apenas para resolver o problema de duas intersecÃ§Ãµes.
+	// JÃ¡ que as outras possibilidades foram cobertas em testes anteriores Ã  chamada do mÃ©todo a seguir
 	static void TWOintersec(double[] Xc, double[] Yc, double[] R, double distancia){
-		
-		System.out.println("resolucao para duas interseccoes");
 		 
 		double a = ((R[0]*R[0]) - (R[1]*R[1]) + (distancia*distancia))/(2*distancia); 
 		double h = Math.sqrt((R[0]*R[0]) - (a*a));
@@ -106,7 +117,7 @@ class Main {
 		double x2 = Xc[0] + (a*(Xc[1] - Xc[0]))/distancia;
 		double y2 = Yc[0] + (a*(Yc[1] - Yc[0]))/distancia;
 		
-		// encontro as coordenadas dos dois pontos de instersecção (P3)
+		// encontro as coordenadas dos dois pontos de instersecÃ§Ã£o (P3)
 		double escapeX = -1*(h*(Yc[1] - Yc[0])/distancia);
 		double escapeY = h*(Xc[1] - Xc[0])/distancia;
 		
@@ -115,24 +126,21 @@ class Main {
 		
 		double y3_1 = y2 + escapeY;
 		double y3_2 = y2 - escapeY;
-		System.out.print("("+ x3_1 +","+ y3_1 +")");
-		System.out.println("("+ x3_2 +","+ y3_2 +")");
-		
+
+		System.out.print("("+ formata(x3_2) +","+ formata(y3_2) +")");
+		System.out.println("("+ formata(x3_1) +","+ formata(y3_1) +")");
 		
 	}
+	
+	// arredonda os nÃºmeros encontrados para trÃªs casas depois da vÃ­rgula
+	static String formata(double valor){
+		Double d[] = new Double[1];
+		d[0] = new Double(valor);
+		String ret = String.format("%.3g", d);
+		if(ret.contains(","))
+			ret = ret.replace(",", ".");
+		return ret;
+	}
+	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
