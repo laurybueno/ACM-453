@@ -104,7 +104,7 @@ class Main {
 		double InterX = Xc[0] + sinalX*B;
 		double InterY = Yc[0] + sinalY*A;
 		
-		System.out.println("("+ InterX +","+ InterY +")");
+		System.out.println("("+ formata(InterX) +","+ formata(InterY) +")");
 		
 	}
 	
