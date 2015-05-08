@@ -134,21 +134,21 @@ class Main {
 		
 	}
 	
-	
-	static String formata(double valor){
-		DecimalFormat dc = new DecimalFormat("0.000");
-		return dc.format(valor);
-	}
-	
-	// arredonda os números encontrados para três casas depois da vírgula
-	/*
+	// arredonda os números encontrados para três casas depois da vírgula	
 	static String formata(double valor){
 		Double d[] = new Double[1];
 		d[0] = new Double(valor);
 		String ret = String.format("%.3g", d);
-		if(ret.contains(","))
+		if(ret.contains(",")) // se a JVM for brasileira, isto vai garantir que a saída use um ponto como separador decimal
 			ret = ret.replace(",", ".");
 		return ret;
+	}
+	
+
+	/* Método alternativo para arredondamento e formatação
+	static String formata(double valor){
+		DecimalFormat dc = new DecimalFormat("0.000");
+		return dc.format(valor);
 	}
 	*/
 	
