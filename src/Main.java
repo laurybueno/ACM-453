@@ -1,4 +1,3 @@
-import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -9,6 +8,7 @@ class Main {
 		double Xc[] = new double[2];
 		double Yc[] = new double[2];
 		double R[] = new double[2];
+
 		Scanner sc = new Scanner(System.in).useLocale(Locale.ENGLISH);
 		
 		// captura a entrada
@@ -17,10 +17,12 @@ class Main {
 			Xc[0] = sc.nextDouble();
 			Yc[0] = sc.nextDouble();
 			R[0] = sc.nextDouble();
+			sc.nextLine();
 			
 			Xc[1] = sc.nextDouble();
 			Yc[1] = sc.nextDouble();
 			R[1] = sc.nextDouble();
+			sc.nextLine();
 			
 			decide(Xc,Yc,R);
 		}
@@ -138,7 +140,7 @@ class Main {
 	static String formata(double valor){
 		Double d[] = new Double[1];
 		d[0] = new Double(valor);
-		String ret = String.format("%.3g", d);
+		String ret = String.format("%.3g", (Object[])d);
 		if(ret.contains(",")) // se a JVM for brasileira, isto vai garantir que a saída use um ponto como separador decimal
 			ret = ret.replace(",", ".");
 		return ret;
