@@ -1,4 +1,3 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 class Main {
@@ -9,10 +8,10 @@ class Main {
 		double Yc[] = new double[2];
 		double R[] = new double[2];
 
-		Scanner sc = new Scanner(System.in).useLocale(Locale.ENGLISH);
+		Scanner sc = new Scanner(System.in);
 		
 		// captura a entrada
-		while(sc.hasNext()){
+		while(sc.hasNextDouble()){
 			
 			Xc[0] = sc.nextDouble();
 			Yc[0] = sc.nextDouble();
@@ -104,7 +103,7 @@ class Main {
 		double InterX = Xc[0] + sinalX*B;
 		double InterY = Yc[0] + sinalY*A;
 		
-		System.out.println("("+ formata(InterX) +","+ formata(InterY) +")");
+		System.out.format("(%.3f,%.3f)\n", InterX,InterY);
 		
 	}
 	
@@ -131,28 +130,10 @@ class Main {
 		double y3_1 = y2 + escapeY;
 		double y3_2 = y2 - escapeY;
 
-		System.out.print("("+ formata(x3_2) +","+ formata(y3_2) +")");
-		System.out.println("("+ formata(x3_1) +","+ formata(y3_1) +")");
+		System.out.format("(%.3f,%.3f)", x3_2,y3_2);
+		System.out.format("(%.3f,%.3f)\n", x3_1,y3_1);
 		
 	}
-	
-	// arredonda os números encontrados para três casas depois da vírgula	
-	static String formata(double valor){
-		Double d[] = new Double[1];
-		d[0] = new Double(valor);
-		String ret = String.format("%.3g", (Object[])d);
-		if(ret.contains(",")) // se a JVM for brasileira, isto vai garantir que a saída use um ponto como separador decimal
-			ret = ret.replace(",", ".");
-		return ret;
-	}
-	
 
-	/* Método alternativo para arredondamento e formatação
-	static String formata(double valor){
-		DecimalFormat dc = new DecimalFormat("0.000");
-		return dc.format(valor);
-	}
-	*/
-	
 
 }
