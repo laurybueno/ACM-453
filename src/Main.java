@@ -1,4 +1,6 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 class Main {
 	
@@ -8,25 +10,41 @@ class Main {
 		double Yc[] = new double[2];
 		double R[] = new double[2];
 
-		Scanner sc = new Scanner(System.in);
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		
 		// captura a entrada
-		while(sc.hasNextDouble()){
-			
-			Xc[0] = sc.nextDouble();
-			Yc[0] = sc.nextDouble();
-			R[0] = sc.nextDouble();
-			sc.nextLine();
-			
-			Xc[1] = sc.nextDouble();
-			Yc[1] = sc.nextDouble();
-			R[1] = sc.nextDouble();
-			sc.nextLine();
-			
-			decide(Xc,Yc,R);
+		try {
+			while(in.ready()){
+				
+				String[] numeros1 = in.readLine().split(" ");
+				
+				Xc[0] = Double.parseDouble(numeros1[0]);
+				Yc[0] = Double.parseDouble(numeros1[1]);
+				R[0] = Double.parseDouble(numeros1[2]);
+				
+				
+				String[] numeros2 = in.readLine().split(" ");
+				
+				Xc[1] = Double.parseDouble(numeros2[0]);
+				Yc[1] = Double.parseDouble(numeros2[1]);
+				R[1] = Double.parseDouble(numeros2[2]);
+				
+				decide(Xc,Yc,R);
+			}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		sc.close();
+		try {
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// decide qual resolucao deve ser aplicada
