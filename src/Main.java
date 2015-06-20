@@ -148,8 +148,14 @@ class Main {
 		double y3_1 = y2 + escapeY;
 		double y3_2 = y2 - escapeY;
 
-		System.out.format("(%.3f,%.3f)", x3_2,y3_2);
-		System.out.format("(%.3f,%.3f)\n", x3_1,y3_1);
+		if(x3_1 > x3_2 || (x3_1 == x3_2 && y3_1 > y3_2)){
+			System.out.format("(%.3f,%.3f)", x3_2,y3_2);
+			System.out.format("(%.3f,%.3f)\n", x3_1,y3_1);
+		}
+		else{
+			System.out.format("(%.3f,%.3f)", x3_1,y3_1);
+			System.out.format("(%.3f,%.3f)\n", x3_2,y3_2);
+		}
 		
 	}
 
